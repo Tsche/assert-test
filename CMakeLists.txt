@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.22)
 project(my_project)
 
 include(FetchContent)
@@ -13,5 +13,10 @@ add_executable(foo main.cpp)
 target_link_libraries(foo
     PRIVATE
         assert
-        dl
 )
+
+IF (WIN32)
+target_link_libraries(foo PRIVATE dbghelp)
+ELSE()
+target_link_libraries(foo PRIVATE dl)
+ENDIF()
