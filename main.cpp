@@ -1,5 +1,13 @@
+#include <cstdlib>
 #include <assert.hpp>
 
 int main() {
-    VERIFY(1 == 2);
+    try{
+        VERIFY(1 != 1);
+    }
+    catch (libassert::verification_failure const&){
+        return EXIT_SUCCESS;
+    }
+
+    return EXIT_FAILURE;
 }
